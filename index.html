@@ -66,8 +66,9 @@
 				</figcaption>
 			</figure>
 			<h2><a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dataset Statistics</h2>
-			<p style="text-align: justify;">Our dataset consists of five splits (train, dev, alpha one, alpha two and alpha three). Below we provide basic statistics of data, i.e., number of tables and table-sentence pairs in each of the data splits. We also performed a validation step with five annotators for inter annotator agreement for all splits except the training set.</p>
-			<div>
+			<p style="text-align: justify;">To systematically assess the challenge of information synchronization and evaluate the methodologies, we aim to build a large-scale table synchronization dataset INFOSYNC based on entity-centric Wikipedia Infoboxes.</p>
+			<p style="text-align: justify;">We collected a dataset comprising approximately 99,440 infoboxes and 1,078,717 rows. The dataset included information in multiple languages, namely English, German, French, Spanish, Dutch, Arabic, Hindi, Chinese, Korean, Afrikaans, Cebuano, and Swedish. The infoboxes covered various categories such as Airport, Album, Animal, Athlete, Book, City, College, Company, Country, Diseases, Food, Medicine, Monument, Movie, Musician, Nobel, Painting, Person, Planet, Shows, and Stadium. This diverse dataset serves as the foundation for our research analysis and experimentation.</p>
+			<!-- <div>
 				<table  style="margin-left:15%;
 					margin-right:15%;">
 					<thead>
@@ -107,9 +108,9 @@
 					<caption>Number of tables and premise-hypothesis
 					pairs for each data split</caption>
 				</table>
-			</div>
-			<br><br>
-			<div style="text-align:center;">
+			</div> -->
+			<br>
+			<!-- <div style="text-align:center;">
 				<table>
 					<thead>
 						<tr>
@@ -147,8 +148,8 @@
 					</tbody>
 					<caption>Cohen's Kappa, human baseline and inter-annotator agreement scores</caption>
 				</table>
-			</div>
-			
+			</div> -->
+			<p style="margin-left:10%; margin-right:10%;"><img src="figures/graph_data.png" style="max-width:95%;"></p>
 			<h3><a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) Test Set</h3>
 			<p style="text-align: justify;">We created test sets to evaluate the alignment accuracy of our pipeline between different languages.</p>
 
@@ -159,6 +160,8 @@
 			<p style="text-align: justify;">Similarly, for the true test set, we followed a similar approach of alignment verification but without the use of translations. In this case, we focused on evaluating the alignments between English and Hindi, covering around 200 tables, as well as between English and Chinese, also covering approximately 200 tables.</p>
 
 			<p style="text-align: justify;">Through these test sets, we aimed to assess the accuracy and reliability of the alignment pipeline by comparing the alignments generated against the expected alignments. This process helped us validate the effectiveness of our alignment techniques and improve the quality of the generated alignments.</p>
+
+			<h3><a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>3) Metadata</h3>
 
 			<h2><a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Live Test</h2>
 			<p style="text-align: justify;">The rules described in information updation section are applied to support human editors in updating Wikipedia infoboxes. Following Wikipedia's guidelines, rule set, and policies, our update requests include a detailed description with evidence. This evidence consists of the up-to-date entity page URL in the source language, the specific table rows information along with the source language, details of the proposed changes, and an additional citation provided by the editor for further validation. Additionally, our information alignment method allows for updates that go beyond the heuristic-based rules, ensuring alignment with the updated information.</p>
