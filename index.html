@@ -37,18 +37,26 @@
 			<p style="text-align: justify;">In summary, these five modules progressively relax the matching requirements, incorporating different aspects of the table rows, to generate alignments based on cosine similarity scores.</p>
 			<!-- <p style="margin-left:10%; margin-right:10%;"><img src="figures/Figure-3.png" style="max-width:95%;"></p> -->
 			<h4><a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a><b>Example</b></h4>
-			<p style="text-align: justify; display:inline;">Below is an update example. The infobox for Shirley Strickland de la Hunty has been updated to include information in both English and Spanish. It shows rows transfer for missing information, value substitution because "Aged 78" is absent in Died. Additionally, one medal
-				infomation (Bronze,1952, 100m) is added in to medal tally.</p>
-			<p style="margin-left:10%; margin-right:10%;"><img src="figures/Figure-3.png" style="max-width:95%;"></p>
+			<!-- <p style="text-align: justify; display:inline;">Below is an update example. The infobox for Shirley Strickland de la Hunty has been updated to include information in both English and Spanish. It shows rows transfer for missing information, value substitution because "Aged 78" is absent in Died. Additionally, one medal
+				infomation (Bronze,1952, 100m) is added in to medal tally.</p> -->
+			<p style="margin-left:10%; margin-right:10%;"><img src="figures/Slide5.png" style="max-width:95%;"></p>
 
 			<h3><a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) Information Updation</h3>
 			<p style="text-align: justify;">Information modification includes Row Append (adding missing rows), Row Update (replacing or adding values), and Merge Rows. We propose a rule-based heuristic approach for information updates. These rules are applied
 				sequentially according to their priority rank (P.R.). Rules explanations are described below.</p>
-			<p style="text-align: justify;"><b>1) Corpus-based:</b> Aligns rows based on cosine similarity of their English translations, considering multiple translations using a majority voting approach. Additional context such as key values and categories are taken into account for accurate key translations.</p>
-			<p style="text-align: justify;"><b>2) Key-only:</b> Attempts to align unaligned pairs from the previous module by computing cosine similarity of their English translations, with a threshold for selecting mutually most similar keys.</p>
-			<p style="text-align: justify;"><b>3) Key value bidirectional:</b> Similar to the previous step, but computes similarities using the entire row (key + value) and applies a threshold for alignment.</p>
-			<p style="text-align: justify;"><b>4) Key value unidirectional:</b> Relaxes the bidirectional mapping constraint by considering the highest similarity in either direction, using a higher threshold to avoid spurious alignments.</p>
-			<p style="text-align: justify;"><b>5) Multi-key:</b> Allows for the selection of multiple keys (up to two) based on a threshold, with a soft constraint for value-combination alignment. Valid multi-key alignment occurs when the merge value-combination similarity score exceeds that of the most similar key.</p>
+			<p style="text-align: justify;"><b>R1) Row Transfer:</b> Unaligned rows are transferred from one table to another.</p>
+			<p style="text-align: justify;"><b>R2) Mutli-Match:</b> Updating the table by handling multi-alignments and merging information to address cases with multiple key alignments.</p>
+			<p style="text-align: justify;"><b>R3) Time Based:</b> Updating aligned values using the latest timestamp to ensure the information reflects the most current data.</p>
+			<p style="text-align: justify;"><b>R4) Trends (positive/negative):</b> Updating values based on identified monotonic patterns (increasing or decreasing) over time, particularly applicable to athlete career statistics.</p>
+			<p style="text-align: justify;"><b>R5) Append Values:</b> Appending additional value information from an up-to-date row to update outdated rows.</p>
+			<p style="text-align: justify;"><b>R6) HR to LR:</b> Transferring information from a high resource language to a low resource language to update outdated information.</p>
+			<p style="text-align: justify;"><b>R7) #Rows:</b> Transferring information from a table with a greater number of rows to a table with fewer rows.</p>
+			<p style="text-align: justify;"><b>R8) Non Popular Keys:</b> Updating information from a table where recently added non-popular keys are likely to exist in order to update outdated tables.</p>
+			
+			<h4><a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a><b>Example</b></h4>
+			<p style="text-align: justify; display:inline;">Below is an update example. The infobox for Shirley Strickland de la Hunty has been updated to include information in both English and Spanish. It shows rows transfer for missing information, value substitution because "Aged 78" is absent in Died. Additionally, one medal
+				infomation (Bronze,1952, 100m) is added in to medal tally.</p>
+			<p style="margin-left:10%; margin-right:10%;"><img src="figures/Figure-3.png" style="max-width:95%;"></p>
 
 			<h2><a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reasoning</h2>
 			<p style="text-align: justify;">To study the nature of reasoning that is involved in deciding the relationship between a table and a hypothesis, we adapted the set of reasoning categories from <a href="https://gluebenchmark.com">GLUE Benchmark</a> to table premises. All definitions and their boundaries were verified with several rounds of discussions. Following this, three graduate students (authors of the paper) independently annotated 160 pairs from the dev and alpha 3 test sets each, and edge cases were adjudicated to arrive at consensus labels.</p>
