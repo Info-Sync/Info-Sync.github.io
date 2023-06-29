@@ -12,68 +12,270 @@
 	<body>
 		<section class="page-header">
 			<h1><img src="figures/logo.jpg" style="max-width:40%;"></h1> 
-			<a href="https://www.aclweb.org/anthology/2020.acl-main.210.pdf" class="btn">Paper</a>
+			<a href="https://vgupta123.github.io/docs/infosync_paper.pdf" class="btn">Paper</a>
 			<a href="https://github.com/infotabs/infotabs" class="btn">Dataset</a>
 			<a href="explore.html" class="btn">Explore</a>
 			<a href="https://github.com/utahnlp/infotabs-code" class="btn">Code</a> 
 			<a href="https://drive.google.com/file/d/18b67cU2XDxMZpJ-99VdWeL8F3lBGyaLj/view?usp=sharing" class="btn">Video</a>
-			<a href="https://docs.google.com/presentation/d/1lPm7c8hubwADNpWHfcqNCRX-KlChh8gEzWPBLIFP79Y/edit?usp=sharing" class="btn">PPT</a><br>
+			<a href="https://vgupta123.github.io/docs/infosync_poster.pdf" class="btn">PPT</a><br>
+			<a href="https://vgupta123.github.io/docs/infosync_ppt.pdf" class="btn">Poster</a><br>
 		</section>
 		<section class="main-content">
 			<h1>Information Synchronization Across Multilingual Semi-Structured Tables</h1>
-			<h2><a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h2><p style="text-align: justify;"> The representation of information across languages poses significant challenges, particularly when it comes to the synchronization of semistructured data. One prominent example is Wikipedia, where the English version comprises just 11.68% of all pages despite having the highest number of editors (76%). This disparity means that a vast majority of the world's population, approximately 94%, lacks access to comprehensive information in their native language. Wikipedia pages in other languages tend to be outdated and poorly maintained. Moreover, translations on Wikipedia often suffer from inaccuracies. An example of the problem is shown in below.<p>
+			<h2><a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h2><p style="text-align: justify;"> The representation of information across languages poses significant challenges, particularly when it comes to the synchronization of semi-structured data. Wikipedia is a notable example, with the English version comprising only 11.68% of all pages despite having the greatest number of editors (75). Due to this disparity, approximately 94% of the world's population lacks access to comprehensive information in their native language. The majority of Wikipedia pages in other languages are obsolete and inadequately maintained. Moreover, Wikipedia translations are frequently inaccurate. An illustration of the issue is provided below.<p>
 			<p style="margin-left:10%; margin-right:10%;"><img src="figures/Slide-1.png" style="max-width:95%;"></p>
-			<p style="text-align: justify;">  Ensuring accurate representation and bridging the language gap are crucial for fostering inclusivity and facilitating knowledge sharing on a global scale. Maintaining consistency and accuracy in Wikipedia tables across different languages requires meticulous attention to detail. To address these challenges and enhance the accuracy of translations, it is crucial to prioritize addressing these complexities. This will pave the way for the creation of a dependable and inclusive knowledge source that overcomes language barriers.<p>
-			<p style="text-align: justify;"> Introducing the InfoSync dataset and implemention of a two-step method for tabular synchronization aims to provide effective solutions to this problem. First we will give details of the dataset and then explaination of the procedure and step to reproduce the results.<p>
+			<p style="text-align: justify;">  Ensuring accurate representation and bridging the language divide are essential for promoting inclusiveness and facilitating global knowledge sharing. Maintaining the integrity and consistency of Wikipedia tables across multiple languages requires meticulous attention to detail. To address these obstacles and improve translation accuracy, it is essential to prioritize addressing these complexities. This will pave the way for the creation of a reliable, inclusive, and language-inclusive knowledge source.<p>
+			<p style="text-align: justify;"> The goal of introducing the InfoSync dataset and implementing a two-step method for tabular synchronization is to provide efficient solutions to this challenge. Following a description of the dataset, we will describe the procedure and steps necessary to reproduce the results.<p>
 
-			<h2><a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dataset Statistics</h2>
+			<h2><a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dataset Details</h2>
 			<p style="text-align: justify;">To systematically assess the challenge of information synchronization and evaluate the methodologies, we build a large-scale table synchronization dataset InfoSync based on entity-centric Wikipedia Infoboxes.</p>
 			<p style="text-align: justify;">We collected a dataset comprising approximately <strong>99,440 infoboxes and 1,078,717 rows</strong>. The dataset included information in multiple languages, namely <em>English, German, French, Spanish, Dutch, Arabic, Hindi, Chinese, Korean, Afrikaans, Cebuano, and Swedish</em>. The infoboxes covered various categories such as <em>Airport, Album, Animal, Athlete, Book, City, College, Company, Country, Diseases, Food, Medicine, Monument, Movie, Musician, Nobel, Painting, Person, Planet, Shows, and Stadium</em>. This diverse dataset serves as the foundation for our research analysis and experimentation.</p>
-			<p style="margin-left:10%; margin-right:10%;"><figure><img src="figures/TableStatistics.png" style="max-width:70%;"><img align="middle"></p> <figcaption>Table: <strong>Average Table Transfer</strong>:- Column 2 shows the average number of tables missing in other languages which can be transferred from C1. Column 3 shows the average number of tables missing in C1, which we can transfer from all languages to C1. Here L is the set of all languages (ln) except source or transfer language. <strong>Language Statistics</strong>:- The number of tables and average rows (AR) per table across different categories for each language.</figcaption></figure>
 
+			<div>
+                             <table style="margin-left:15%;margin-right:15%;text-align: center">
+                               <col>
+                               <colgroup span="2"></colgroup>
+                               <colgroup span="2"></colgroup>
+                               <tr>
+                                 <td rowspan="2"></td>
+                                 <th colspan="2" scope="colgroup">Average Table Transfer %</th>
+                                 <th colspan="2" scope="colgroup">Language Statistics</th>
+                               </tr>
+                               <tr>
+                                 <th scope="col">C1 -> <span>&Sigma;</span> ln </th>
+                                 <th scope="col"><span>&Sigma;</span> ln -> C1</th>
+                                 <th scope="col"># Table</th>
+                                 <th scope="col">Average Rows</th>
+                               </tr>
+                               <tr>
+                                 <th scope="row">af</th>
+                                 <td>17.46</td>
+                                 <td>400.5</td>
+                                 <td>1575</td>
+                                 <td>9.91</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">ar</th>
+                                 <td>34.02</td>
+                                 <td>27.38</td>
+                                 <td>7648</td>
+                                 <td>13.01</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">ceb</th>
+                                 <td>42.87</td>
+                                 <td>134.88</td>
+                                 <td>3870</td>
+                                 <td>7.82</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">de</th>
+                                 <td>40.73</td>
+                                 <td>27.12</td>
+                                 <td>8215</td>
+                                 <td>7.88</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">en</th>
+                                 <td>45.85</td>
+                                 <td>0.32</td>
+                                 <td>12431</td>
+                                 <td>12.60</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">es</th>
+                                 <td>38.78</td>
+                                 <td>9.0</td>
+                                 <td>9950</td>
+                                 <td>12.59</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">fr</th>
+                                 <td>41.25</td>
+                                 <td>4.73</td>
+                                 <td>10858</td>
+                                 <td>10.30</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">hi</th>
+                                 <td>18.39</td>
+                                 <td>358.97</td>
+                                 <td>1724</td>
+                                 <td>10.91</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">ko</th>
+                                 <td>31.13</td>
+                                 <td>40.51</td>
+                                 <td>6601</td>
+                                 <td>9.35</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">nl</th>
+                                 <td>33.69</td>
+                                 <td>24.6</td>
+                                 <td>7837</td>
+                                 <td>10.46</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">ru</th>
+                                 <td>36.98</td>
+                                 <td>14.54</td>
+                                 <td>9066</td>
+                                 <td>11.41</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">sv</th>
+                                 <td>35.53</td>
+                                 <td>24.62</td>
+                                 <td>7985</td>
+                                 <td>9.89</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">tr</th>
+                                 <td>28.99</td>
+                                 <td>59.33</td>
+                                 <td>5599</td>
+                                 <td>10.14</td>
+                               </tr>
+                               <tr>
+                                 <th scope="row">zh</th>
+                                 <td>36.16</td>
+                                 <td>32.71</td>
+                                 <td>7140</td>
+                                 <td>12.43</td>
+                               </tr>
+                             </table>
+			     <caption>Table: <strong>Average Table Transfer</strong>:- Column 2 shows the average number of tables missing in other languages which can be transferred from C1. Column 3 shows the average number of tables missing in C1, which we can transfer from all languages to C1. Here L is the set of all languages (ln) except source or transfer language. <strong>Language Statistics</strong>:- The number of tables and average rows (AR) per table across different categories for each language.</caption>
+			</div>
+			<div>
+				<table  style="margin-left:15%;margin-right:15%;text-align: center">
+					<thead>
+						<tr>
+							<th>Topic</th>
+							<th># Table</th>
+							<th>Average Rows</th>
+						</tr>
+					</thead>
+					<tbody align="center">
+						<tr>
+							<td>Airport</td>
+							<td>18512</td>
+							<td>9.66</td>
+						</tr>
+						<tr>
+							<td>Food</td>
+							<td>6184</td>
+							<td>7.93</td>
+						</tr>
+						<tr>
+							<td>Album</td>
+							<td>5833</td>
+							<td>7.58</td>
+						</tr>
+						<tr>
+							<td>Animal</td>
+							<td>3209</td>
+							<td>8.27</td>
+						</tr>
+					</tbody>
+					<br>
+					<!-- <caption>Number of tables and premise-hypothesis
+					pairs for each data split</caption> -->
+				</table>
+                                <caption><strong>Category Statistics: </strong>Number of tables in each category and average number of rows (AR) across different languages. Statistics on all categories present in the paper above.</caption>
+			</div>
 
-			<h3><a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) Test Set</h3>
+			<h3><a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Test Sets</h3>
 			<p style="text-align: justify;">We created several test sets to evaluate the alignment accuracy of our pipeline for different configurations.</p>
 
-			<h4><a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>i) Translations Based Test Set:</h4>
-			<p style="text-align: justify;">For the translation-based test sets, we utilized translations (google or state of the art translation models) and covered approximately 1500 tables for both <em>English to X</em> alignments and <em>X to Y</em> alignments. Here, <em>X</em> and <em>Y</em> represent languages other than English. In these test sets, we initially obtained preliminary alignments from our alignment pipeline and stored them in a JSON file. Our task was to review and verify the correctness of these alignments, making necessary updates to the JSON file as needed.</p>
-
-			<h4><a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>ii) True Test Set:</h4>
-			<p style="text-align: justify;">Similarly, for the true test set, we followed a similar approach of alignment verification but without the use of translations. In this case, we focused on evaluating the alignments between English and Hindi, covering around 200 tables, as well as between English and Chinese, also covering approximately 200 tables.</p>
+                        <ul>
+                        <li>
+			<h4><a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Translations Based Test Set:</h4>
+			<p style="text-align: justify;">For the translation-based test sets, we utilized translations (google or state of the art translation models) and covered approximately 1500 tables for both <strong>English to X</strong> and <strong>X to Y</strong> alignments. Here, <strong>X</strong> and <strong>Y</strong> represent languages other than English. In these test sets, annotators initially obtained preliminary alignments from our alignment pipeline and stored them in a JSON file. The task was to review and verify the correctness of these alignments, making necessary updates to the JSON file as needed.</p>
+                        </li> 
+                        <li>
+			<h4><a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Native Speaker Annotated True Test Set:</h4>
+			<p style="text-align: justify;">Similarly, we created a second test set without using translations; instead, native speakers of the language completed alignment annotations. In this instance, we evaluated the alignments between English and Hindi and English and Chinese, which included roughly 200 tables in each language pair.
+</p>
 
 			<p style="text-align: justify;">Through these test sets, we aimed to assess the accuracy and reliability of the alignment pipeline by comparing the alignments generated against the expected alignments. This process helped us validate the effectiveness of our alignment techniques and improve the quality of the generated alignments.</p>
 
-			<h3><a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>3) Metadata</h3>
+                        </li> 
+                        <li>
+			<h3><a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Metadata</h3>
+                        </li> 
+                        </ul>
+
 			
-			<h2><a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proposed Method for Synchronization</h2>
-			<p style="text-align: justify;">Our proposed approach for table synchronization involves two steps: (1.) Information Alignment, which focuses on aligning table rows, and (2.) Information Update, which aims to update missing or outdated rows across different language pairs to ensure consistency. In the Information Alignment step, we utilize corpus statistics from Wikipedia, considering both key and value-based similarities to align rows in multilingual tables. For the Information Update step, we employ a rule-based approach that consists of nine curated rules. These rules include row transfer, time-based updates, value trends, multikey matching, appending values, prioritizing high to low resource information, handling differences in the number of rows, and dealing with rare keys. We evaluate the effectiveness of both tasks using the InfoSync dataset. Additionally, we conduct an online experiment adhering to Wikipedia editing guidelines, where we submit detected mismatches for review by Wikipedia editors. We track the number of edits approved or refused by the editors. Notably, our method received acceptance and recognition on Wikipedia's Village pump, further validating its efficacy.</p>
-			<h3><a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>1) Information Alignment</h3>
-			<p style="text-align: justify;">The proposed method consists of five modules aimed at aligning table rows with relaxed matching requirements to generate additional alignments.</p>
-			<p style="text-align: justify;"><b>1) Corpus-based:</b> Aligns rows based on cosine similarity of their English translations, considering multiple translations using a majority voting approach. Additional context such as key values and categories are taken into account for accurate key translations.</p>
-			<p style="text-align: justify;"><b>2) Key-only:</b> Attempts to align unaligned pairs from the previous module by computing cosine similarity of their English translations, with a threshold for selecting mutually most similar keys.</p>
-			<p style="text-align: justify;"><b>3) Key value bidirectional:</b> Similar to the previous step, but computes similarities using the entire row (key + value) and applies a threshold for alignment.</p>
-			<p style="text-align: justify;"><b>4) Key value unidirectional:</b> Relaxes the bidirectional mapping constraint by considering the highest similarity in either direction, using a higher threshold to avoid spurious alignments.</p>
-			<p style="text-align: justify;"><b>5) Multi-key:</b> Allows for the selection of multiple keys (up to two) based on a threshold, with a soft constraint for value-combination alignment. Valid multi-key alignment occurs when the merge value-combination similarity score exceeds that of the most similar key.</p>
-			<p style="text-align: justify;">In summary, these five modules progressively relax the matching requirements, incorporating different aspects of the table rows, to generate alignments based on cosine similarity scores.</p>
+			<h2><a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a> Synchronization Methodology </h2>
+			<p style="text-align: justify;">Our proposed approach for table synchronization involves two steps:
+<ul> <li><strong>Information Alignment</strong>, which focuses on aligning table rows. We utilize corpus statistics from Wikipedia, considering both key and value-based similarities to align rows in multilingual tables. </li> <li> <strong>Information Update</strong>, which aims to update missing or outdated rows across different language pairs to ensure consistency. We employ a rule-based approach that consists of nine curated rules. These rules include row transfer, time-based updates, value trends, multikey matching, appending values, prioritizing high to low resource information, handling differences in the number of rows, and dealing with rare keys. </li></ul> </p>
+                        <p style="text-align: justify;">  We evaluate the effectiveness of both tasks using the InfoSync dataset. Additionally, we conduct an online experiment adhering to Wikipedia editing guidelines, where we submit detected mismatches for review by Wikipedia editors. We track the number of edits approved or refused by the editors.</p>
+			<h3><a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Information Alignment</h3>
+			<p style="text-align: justify;">The proposed method consists of five modules designed to generate additional alignments sequentially by aligning table rows with relaxed matching requirements.</h3>
+			<ol>
+			<li>
+			<p style="text-align: justify;"><b> Corpus-based:</b> Aligns rows based on the cosine similarity of their English translations, taking multiple translations into account using majority voting. Accurate key translations take into account additional context, such as key values and categories.
+			</li>
+			<li>
+			<p style="text-align: justify;"><b> Key-only:</b> Attempts to align unaligned pairs from the previous module by computing cosine similarity of their English translations, with a threshold for selecting mutually most similar keys.</p>
+			</li>
+			<li>
+			<p style="text-align: justify;"><b> Key value bidirectional:</b> Similar to the previous step, but computes similarities using the entire row (key + value) and applies a threshold for alignment.</p>
+			</li>
+			<li>
+			<p style="text-align: justify;"><b> Key value unidirectional:</b> Relaxes the bidirectional mapping constraint by considering the highest similarity in either direction, using a higher threshold to avoid spurious alignments.</p>
+			</li>
+			<li>
+			<p style="text-align: justify;"><b> Multi-key:</b> Allows for the selection of multiple keys (up to two) based on a threshold, with a soft constraint for value-combination alignment. Valid multi-key alignment occurs when the merge value-combination similarity score exceeds that of the most similar key.</p>
+			</li>
+			</ol>
+			
+			
+			
+			
+			
+			<p style="text-align: justify;">In summary, these five modules progressively relax the matching requirements, incorporating different aspects of the table rows, to generate alignments based on cosine similarity scores.</p> 
 			<!-- <p style="margin-left:10%; margin-right:10%;"><img src="figures/Figure-3.png" style="max-width:95%;"></p> -->
-			<h4><a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a><b>Example</b></h4>
+			<h4><a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a><b>Alignment Example And Evaluation</b></h4>
 			<!-- <p style="text-align: justify; display:inline;">Below is an update example. The infobox for Shirley Strickland de la Hunty has been updated to include information in both English and Spanish. It shows rows transfer for missing information, value substitution because "Aged 78" is absent in Died. Additionally, one medal
 				infomation (Bronze,1952, 100m) is added in to medal tally.</p> -->
-			<p style="margin-left:10%; margin-right:10%;"><img src="figures/Slide5.png" style="max-width:95%;"></p>
-
-			<h3><a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) Information Updation</h3>
+			
+            <figure> <p style="margin-left:10%; margin-right:10%;"><img src="figures/Slide5.png" style="max-width:95%;"></p> <figcaption><b>Explanation of Alignment Performance Metrics</b>: <b>T</b><sub>en</sub> and <b>T</b><sub>hi</sub> are a collection of all rows in the English and Hindi tables, respectively. <b>R</b><sub>x</sub><sup>n</sup> represents the <em>n</em><sup>th</sup> row in the language table. <b>R</b><sub>x</sub>(<b>X</b>) retrieves all rows in the language <em>x</em> using mapping  <b>X</b>. |.| represents the set's cardinality. Every alignment is saved as a tuple in form (<b>R</b><sub>x</sub><sup>m</sup>, <b>R</b><sub>y</sub><sup>n</sup>). <b>G</b> is a collection of all gold (human) alignments. <b>P</b> is a collection of predicted alignments (can see there are mistakes in the alignment.</figcaption>
+</figure>
+ 
+			<h3><a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Information Updation</h3>
 			<p style="text-align: justify;">Information modification includes Row Append (adding missing rows), Row Update (replacing or adding values), and Merge Rows. We propose a rule-based heuristic approach for information updates. These rules are applied
 				sequentially according to their priority rank (P.R.). Rules explanations are described below.</p>
-			<p style="text-align: justify;"><b>R1) Row Transfer:</b> Unaligned rows are transferred from one table to another.</p>
-			<p style="text-align: justify;"><b>R2) Mutli-Match:</b> Updating the table by handling multi-alignments and merging information to address cases with multiple key alignments.</p>
-			<p style="text-align: justify;"><b>R3) Time Based:</b> Updating aligned values using the latest timestamp to ensure the information reflects the most current data.</p>
-			<p style="text-align: justify;"><b>R4) Trends (positive/negative):</b> Updating values based on identified monotonic patterns (increasing or decreasing) over time, particularly applicable to athlete career statistics.</p>
-			<p style="text-align: justify;"><b>R5) Append Values:</b> Appending additional value information from an up-to-date row to update outdated rows.</p>
-			<p style="text-align: justify;"><b>R6) HR to LR:</b> Transferring information from a high resource language to a low resource language to update outdated information.</p>
-			<p style="text-align: justify;"><b>R7) #Rows:</b> Transferring information from a table with a greater number of rows to a table with fewer rows.</p>
-			<p style="text-align: justify;"><b>R8) Non Popular Keys:</b> Updating information from a table where recently added non-popular keys are likely to exist in order to update outdated tables.</p>
+            <ol>
+			<li>
+			<p style="text-align: justify;"><b> Row Transfer (R1): </b> Unaligned rows are transferred from one table to another.</p>
+			</li>
+			<li>
+			<p style="text-align: justify;"><b> Mutli-Match (R2): </b> Updating the table by handling multi-alignments and merging information to address cases with multiple key alignments.</p>
+			</li>
+			<li>
+			<p style="text-align: justify;"><b> Time Based (R3): </b> Updating aligned values using the latest timestamp to ensure the information reflects the most current data.</p>
+			</li>
+			<li>
+			<p style="text-align: justify;"><b> Trends positive/negative (R4):</b> Updating values based on identified monotonic patterns (increasing or decreasing) over time, particularly applicable to athlete career statistics.</p>
+			</li>
+			<li>
+			<p style="text-align: justify;"><b> Append Values (R5):</b> Appending additional value information from an up-to-date row to update outdated rows.</p>
+			</li>
+			<li>
+			<p style="text-align: justify;"><b> HR to LR (R6):</b> Transferring information from a high resource language to a low resource language to update outdated information.</p>
+			</li>
+			<li>
+			<p style="text-align: justify;"><b> #Rows (R7):</b> Transferring information from a table with a greater number of rows to a table with fewer rows.</p>
+			</li>
+			<li>
+			<p style="text-align: justify;"><b> Non Popular Keys (R8):</b> Updating information from a table where recently added non-popular keys are likely to exist in order to update outdated tables.</p> 
+			</li>
+			</ol>
 			
-			<h4><a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a><b>Example</b></h4>
+			<h4><a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a><b>Updation Example</b></h4>
 			<p style="text-align: justify; display:inline;">Below is an update example. The infobox for Shirley Strickland de la Hunty has been updated to include information in both English and Spanish. It shows rows transfer for missing information, value substitution because "Aged 78" is absent in Died. Additionally, one medal
 				infomation (Bronze,1952, 100m) is added in to medal tally.</p>
 			<p style="margin-left:10%; margin-right:10%;"><img src="figures/Figure-3.png" style="max-width:95%;"></p>
@@ -210,7 +412,7 @@
 					<!-- <caption>Number of tables and premise-hypothesis
 					pairs for each data split</caption> -->
 				</table>
-                                <caption><strong>Table:</strong>Human-Assisted Wikipedia infobox updates: Accept/Reject rate for different flows of information.</caption>
+                                <caption><strong>Table : </strong>Human-Assisted Wikipedia infobox updates: Accept/Reject rate for different flows of information.</caption>
 			</div>
 			<!-- <br><br>
 			<div style="text-align:center;">
@@ -261,11 +463,11 @@
 			<p style="text-align: justify;"> The InfoSync dataset is prepared by collaboration of across multiple institutions <a href="https://www.cs.utah.edu/">University of Utah</a>, <a href="https://www.iitg.ac.in/cse/"> IIT Guwahati</a>,<a href="https://www.ctae.ac.in/"> CTAE</a>   and <a href="https://www.bloomberg.com/company/"> Bloomberg LP</a> by the following people: </p>
 			<figure>
 				<img src="figures/siddarth.JPG" width="140" height="120">
-				<img src="figures/chelsi" width="140" height="120">
+				<img src="figures/chelsi.jpg" width="140" height="120">
 				<img src="figures/tushar.png" width="140" height="120">
 				<img src="figures/vivekg.jpg" width="140" height="120">
 				<img src="figures/shou.jpg" width="140" height="120">
-				<figcaption>From left to right <a href="https://www.linkedin.com/in/siddharth-khincha-644a70203">Siddharth Khincha</a>,<a href="https://tushaarkataria.github.io/">Chelsi Jain</a>, <a href="https://tushaarkataria.github.io/">Tushar Kataria</a>,<a href="https://vgupta123.github.io">Vivek Gupta</a> and <a href="https://imsure318.github.io/">Shou Zhang</a>. </figcaption>
+				<figcaption>From left to right <a href="https://www.linkedin.com/in/siddharth-khincha-644a70203">Siddharth Khincha</a>,<a href="https://www.linkedin.com/in/chelsi-jain-7b0734192">Chelsi Jain</a>, <a href="https://tushaarkataria.github.io/">Tushar Kataria</a>,<a href="https://vgupta123.github.io">Vivek Gupta</a> and <a href="https://imsure318.github.io/">Shou Zhang</a>. </figcaption>
 			</figure>
 			<h2><a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Citation</h2>
 			<p style="text-align: justify;"> Please cite our paper as below if you use the InfoSync dataset.</p>
